@@ -1,6 +1,6 @@
 
 import sys
-sys.stdin = open("4843_input.txt", "r")
+sys.stdin = open("4.txt", "r")
 
 T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
