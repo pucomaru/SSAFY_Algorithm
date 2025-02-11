@@ -4,7 +4,7 @@
 
 
 
-arr = list(input())
+arr = list(input())             # 전구 Y/N 리스트 입력받음 
 
 length = len(arr)               # 전구 갯수
 
