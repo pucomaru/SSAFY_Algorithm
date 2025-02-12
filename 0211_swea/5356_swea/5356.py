@@ -1,5 +1,5 @@
-import sys
-sys.stdin = open("sample_input.txt", "r")
+# import sys
+# sys.stdin = open("sample_input.txt", "r")
 
 T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
@@ -21,7 +21,7 @@ for test_case in range(1, T + 1):
 
     # print(blackboard)
 
-    for height in range(len(blackboard)):
+    for height in range(len(blackboard[0])):
         for width in range(case):
             if blackboard[width][height] != ' ':
                 read_words.append(blackboard[width][height])
@@ -32,3 +32,31 @@ for test_case in range(1, T + 1):
     # ///////////////////////////////////////////////////////////////////////////////////
 
 
+
+
+# 라이브 강사님이 품 
+
+# A = 'ABCD'
+# B  = 'EFGHIJKLMN'
+
+# N = len(A)
+# M = len(B)
+# i = j = 0           #A[i], B[j]
+# ans = ''
+# while i+j < N+M:
+#     if i < N:
+#         ans += A[i]
+#         i += 1
+#     if j < M:
+#         ans += B[i]
+#         j += 1
+# prin(ans)
+# ans = [0] * (N+M):
+# while i+j < N+M:
+#     if i < N:
+#         ans[i+j] = A[i]
+#         i += 1
+#     if j < M:
+#         ans[i+j] = B[j]
+#         j += 1
+# print(j.)
