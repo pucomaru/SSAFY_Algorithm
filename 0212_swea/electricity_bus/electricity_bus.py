@@ -16,9 +16,11 @@ for test_case in range(1, T + 1):
     now_idx = 0                                     # 출발 인덱스
     move_count = K                                  # 최대 이동 횟수
     charge_count = 0                                # 충전 횟수
-    back_count = 0                                  # 뒤로 간 횟수
+    # back_count = 0                                  # 뒤로 간 횟수
 
     while now_idx < N:                                          # 출발
+        back_count = 0 
+        # back_count = 0 
         if move_count != 0:                         # 이동 횟수가 남아 있으면 이동
             move_count -= 1
             now_idx += 1
