@@ -4,6 +4,8 @@ from itertools import permutations
 def calculate_num(num_arr):
     num_sum = 0
 
+    
+
     while 1:
         if len(num_arr) == 1:
             break
@@ -73,7 +75,7 @@ for test_case in range(1, T+1):
                 calculate.append(numbers[i//2])
             else:
                 calculate.append(stack_op[i//2])
-
+                
         # 이제 계산식 리스트에서 하나하나씩 꺼내서 계산을 해주자
         result = calculate_num(calculate)
 
