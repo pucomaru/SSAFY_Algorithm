@@ -10,8 +10,7 @@
 def in_order(n):
     if n:
         in_order(left[n])
-        number_in[n] = number[0]
-        number.pop(0)
+        number_in[n] = number.pop(0)
         in_order(right[n])
 
 T = int(input())
@@ -31,7 +30,7 @@ for test_case in range(1, T+1):
     # 완전 이진 트리 형태 만들어 주기
     for i in range(1, N + 1):
         # 1일때는 부모 노드가 없으므로 부모 노드 없는 것만 설정
-        if i == 1 :
+        if i == 1:
             parent[i] = 0
             continue
         # 짝수 번호 일경우 (왼쪽 자식)
