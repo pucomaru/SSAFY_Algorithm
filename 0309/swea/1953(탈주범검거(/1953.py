@@ -1,3 +1,5 @@
+# 큐 쓸때 제발!!!!!!!!!!!!pop(0)하자!!!!!!!!!!!아니면 deque를 쓰던가!!!!!!!!!!!!!!!!!!!!!!!!
+
 def bfs(si,sj):
     global result
 
@@ -7,7 +9,7 @@ def bfs(si,sj):
     visited[si][sj] = 1
 
     while q:
-        ti, tj = q.pop()
+        ti, tj = q.pop(0)
 
         # 델타 우/하/좌/상  0 1 2 3
         for delta in range(4):
@@ -96,17 +98,15 @@ def bfs(si,sj):
                             q.append([ni, nj])
                             visited[ni][nj] = visited[ti][tj] + 1
 
-
-        print(visited)
-        for i in range(N):
-            for j in range(M):
-                if visited[i][j]:
-                    result += 1
+    for i in range(N):
+        for j in range(M):
+            if 0< visited[i][j] <= L:
+                result += 1
 
 
 T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
-for test_case in range(1, T + 1):
+for test_case in range(1, T+1):
     # ///////////////////////////////////////////////////////////////////////////////////
     N, M, R, C, L = map(int,input().split())                    # N 세로 , M 가로, R 맨홀 뚜껑 행 인덱스 , C 열 인덱스 , L 탈촐 시간
 
@@ -124,5 +124,5 @@ for test_case in range(1, T + 1):
 
     bfs(R, C)
 
-    print(f"{test_case} {result}")
+    print(f"#{test_case} {result}")
     # ///////////////////////////////////////////////////////////////////////////////////
