@@ -1,4 +1,7 @@
 # 런타임 에러남
+# 사탕이 1억개가 넘으면 시간 초과 가능 성 있음
+# 재귀 호출 많으면 터질 가능성 잇음
+# 틀린풀이 최적화해야함 .
 
 def eat_candy(arr):
     global eat
@@ -27,7 +30,6 @@ def eat_candy(arr):
         arr[1] -= 1
         eat += 1
         eat_candy(arr)
-
 
 T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
