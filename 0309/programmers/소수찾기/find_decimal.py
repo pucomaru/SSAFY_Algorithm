@@ -19,6 +19,10 @@ def check(number):
     # 소수는 약수가 1 , 자기자신인 숫자
     if number < 2:
         return
+    if number == 2:
+        decimal.append(2)
+        return
+
     # number 전에 나눠지는 숫자가 있으면 소수가 아님
     for i in range(2,int(number ** 0.5) + 1):
         if number % i == 0:
@@ -33,7 +37,6 @@ def subset(arr):
         per = list(permutations(arr,length))
         # permutation은 튜플로 결과가 나오기에 join을 통해 합쳐줌
         for p in per:
-            print(p)
             check("".join(p))
 
 paper = input()                   # 종이 조각에 적힌 숫자들
