@@ -11,13 +11,13 @@ def dfs(arr, c):
     global result
     global check
 
-    if [arr, c] in check:
+    if (tuple(arr), c) in check:
         return
 
     # 그냥 check.append([arr,c]) 하면 내가 원하는 값 append 안됨 .
     # 얕은 복사가 되기에 만약 arr = [1,2,3,4,5 ] 를 저장하고싶어서 check.append([[1,2,3,4,5],c]) 했는데 밑에서 arr값이 바뀌면 그 append하는 값이 바뀜
     # 왜냐 사실 append는 그 값을 저장하는게 아니라 그 리스트의 주소를 저장하는 것이기때문에 .
-    check.append([copy.deepcopy(arr), c])
+    check.add(arr[:], c)
 
     if c == change:
         num = int(''.join(map(str, arr)))
@@ -41,9 +41,8 @@ for test_case in range(1, T+1):
     N, change = map(int, input().split())  # 숫자 / 교환 횟수
     number = list(map(int, str(N)))
     result = -1e9
-    check = []
+    check = set()
 
     dfs(number, 0)
-
     print(f"#{test_case} {result}")
     # ///////////////////////////////////////////////////////////////////////////
