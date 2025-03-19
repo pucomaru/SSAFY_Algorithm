@@ -2,45 +2,48 @@
 import sys
 sys.stdin = open("5247_input.txt", "r")
 
-def dfs(v,cnt):
-    global min_cnt
+from collections import deque
 
-    if cnt > min_cnt:
-        return
+def bfs(n):
+    global result
 
-    if v == M:
-        if cnt < min_cnt:
-            min_cnt = cnt
-            return
+    q = deque()
+    q.append(n)
 
-    # V가 M보다 작을 경우
-    if v > M and v % 10 >= 1:
-        dfs(v-10, cnt+1)
+    while q:
+        value = q.popleft()
 
-    if v > M and v % 10 < 1:
-        dfs(v-1, cnt+1)
+        if 1 <= value <= 1000000:
 
-    # V가 M보다 클 경우
-    if v < M and v * 2 <= M:
-        dfs(v*2, cnt + 1)
+            if value == M:
+                result = visited[value]
+                return
 
-
-
-
-    elif v > M:
-        dfs(v-1, cnt + 1)
-        dfs(v-10, cnt + 1)
+            if visited[value - 1] == 0:
+                q.append(value - 1)
+                visited[value - 1] = visited[value] + 1
+            if visited[value - 10] == 0:
+                q.append(value - 10)
+                visited[value - 10] = visited[value] + 1
+            if (0 < value + 1 <= 1000000) and visited[value + 1] == 0:
+                q.append(value + 1)
+                visited[value + 1] = visited[value] + 1
+            if (0 < value * 2 <= 1000000) and visited[value * 2] == 0:
+                q.append(value * 2)
+                visited[value * 2] = visited[value] + 1
 
 T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
-for test_case in range(1, T + 1):
+for test_case in range(1, T+1):
     # ///////////////////////////////////////////////////////////////////////////////////
 
-    N, M = map(int,input().split())                 # N = 자연수 / M = 만들어야 하는 자연수
+    N, M = map(int, input().split())                 # N = 자연수 / M = 만들어야 하는 자연수
 
-    min_cnt = 1e9
+    visited = [0] * 1000001
 
-    dfs(N, 0)
+    result = -1
 
-    print(f"#{test_case} {min_cnt}")
+    bfs(N)
+
+    print(f"#{test_case} {result}")
     # ///////////////////////////////////////////////////////////////////////////////////
