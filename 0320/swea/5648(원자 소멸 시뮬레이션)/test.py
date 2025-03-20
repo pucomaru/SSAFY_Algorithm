@@ -15,7 +15,7 @@ def bfs(atom):
     q = deque()
     # 초당 원자 위치 담을 딕셔너리
     times = {}
-    # 터진 원자들
+    # 터진 원자들 중복방지를 위해 집합
     burst = set()
 
     # 원자 시작 위치 쫙 q에 담아줌
@@ -38,22 +38,15 @@ def bfs(atom):
             else:
                 times[(nx, ny, nt)].append(idx)
 
-            q.append((nx, ny, d, nt, idx))
+                # ex ) ( 100, 50, 3 ) 가 2 이상이라는것은 3초에 좌표 100,50 에 있는가 원자가 2이상이라는 뜻이므로 터짐
+                # 따라서 터지는 idx들을 burst 집합에 넣어줘야함.
+                if len(times[(nx, ny, nt)]) >= 2:
+                    burst.update(times[(nx, ny, nt)])
 
-    # q에 든게 없으면 이제 이동할 수 있는 원자가 없는거
-    # 이제 충돌 확인을 해준다
-    # times 딕셔너리 형태인데 만약에 time[(1000,5,3)] = [ 1, 2]
-    # 면 3초에 1000,5 위치에 원자 1,2가 있다는것임 따라서
-    # value 길이가 2이상인것들은 당연히 터지는거
-    # 터지는 원자들을 burst 에 담아 줄 것인데 왜 set로 지정했냐면
-    # 내 코드는 원자들이 만나면 터지고 그뒤로 사라지는게 아니라 일단 끝까지 가게 지정을 짰으므로
-    # 터져야할 원자가 안터지고 쭉 가다가 다른 원자를 또 만나서 터질 수 있기에
-    # 중복을 처리하기위해 set를 이용함
-    for value in times.values():
-        if len(value) >= 2:
-            for i in value:
-                if i not in burst:
-                    burst.add(i)
+            # burst 에 idx가 있으면 이미 터진 원자이므로 q에 append 할 필요가 없음
+            if idx not in burst:
+                q.append((nx, ny, d, nt, idx))
+
     return burst
 
 T = int(input())

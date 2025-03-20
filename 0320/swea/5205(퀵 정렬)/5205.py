@@ -30,7 +30,7 @@ T = int(input())
 for test_case in range(1, T + 1):
     # ///////////////////////////////////////////////////////////////////////////////////
 
-    N = int(input())                                # N 정수의 개수
+    N = intinput())                                # N 정수의 개수
 
     number = list(map(int,input().split()))         # 숫자들
 
